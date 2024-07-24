@@ -1,9 +1,17 @@
 # [PowerBI] Customer Behavior Analysis
 
 ## I. Introduction
-### 1. Business question
-The sales department wants to know the overview of inventory status and look up the product inventory by category and location to come up with an appropriate sales and marketing strategy.
-### 2. Dataset
+### 1. Business context
+Sales representatives from regional sales offices have assigned sales territories in the United States, Canada, England, Australia, Germany, and France. Each regional office consists of several sales representatives and a team manager. In their daily sales activities, sales representatives use both laptops and Handheld PCs that run Microsoft® Windows CE. A typical work day for a sales representative starts with the representative dialing in to the regional office and downloading current data such as inventory, product, and promotional information. During customer visits, the sales representative takes orders on the laptop or Handheld PC. At the end of each day, the sales representative sets up appointments for the following day or week, checks the appointments of other representatives in the area for possible collaboration, and updates the contact list. The sales representative dials back into the regional office, sends updated information, and receives any new internal communications from the base office or regional office. The company currently uses Microsoft Outlook® for email.
+
+### 2. Business questions
+The sales teams have identified the following requirements that will enable them to perform their jobs better:
+
+Customer segmentation and profiling:
+- Analyze customers based on their purchase behaviours: RFM (recency, frequency, and monetary value of a transaction)
+- Who are the best customer across all product lines? With whom should the sales team focus its efforts for building long-term relationships?
+- What products are popular and at what rate among customer group?
+### 3. Dataset
 Dataset: **adventureworks2019** (public Google BigQuery dataset)
 
 Dataset dictionary: Please reach file "Data Dictionary" attached above
@@ -19,81 +27,62 @@ Dataset access:
 ## II. Apply design thinking mindset
 **1. Empathize**
 
-![image](https://github.com/thuhuongphan11/Python_RFM_Analysis/assets/141643891/b4e465be-08bf-47fa-98f4-915209e6e740)
+![image](https://github.com/user-attachments/assets/5082ae49-5a4e-441d-b14b-dc4cdf5fac02)
 
 **2. Define point of view**
 
-![image](https://github.com/thuhuongphan11/Python_RFM_Analysis/assets/141643891/73459b34-a433-42c4-848b-f2751f9008b3)
+![image](https://github.com/user-attachments/assets/99c0c294-2ed5-40c0-8582-fe6cccd6aa0a)
 
-**3. Ideate***
 
-![image](https://github.com/thuhuongphan11/Python_RFM_Analysis/assets/141643891/0552fc98-2ffd-49d2-8806-fbc72258edee)
+**3. Ideate**
+
+![image](https://github.com/user-attachments/assets/1a70413c-e5f2-4650-999f-7f9948db13da)
 
 **4&5. Prototype and review**
 
-![image](https://github.com/thuhuongphan11/Python_RFM_Analysis/assets/141643891/47280733-cfea-49fc-bb0e-7e6c30845f71)
+![image](https://github.com/user-attachments/assets/3e6ce36e-55e4-4e89-8fc4-2a3b74bc7a41)
+
 
 ## III. Main Process
-### 1. Extract data with Google BigQuery
-#### Output total produced quantity and total sold quantity by month/year/quarter (Fact_Built_&_Sold table)
-
-![image](https://github.com/thuhuongphan11/Python_RFM_Analysis/assets/141643891/fdf61121-d3d9-4d8a-99de-fd8a3a64668d)
-
-![image](https://github.com/thuhuongphan11/Python_RFM_Analysis/assets/141643891/b9fd3a39-5ce8-4c98-8e1c-693482e7858c)
-
-#### Output product ID, product name, sub-category, category (dim_category table)
-
-![image](https://github.com/thuhuongphan11/Python_RFM_Analysis/assets/141643891/bd6b3277-0072-4ecb-8e2b-1f8f00dd7384)
-
-#### Output total inventory quantity by product ID (dim_inventory_by_product table)
-
-![image](https://github.com/thuhuongphan11/Python_RFM_Analysis/assets/141643891/ca19f03c-fefe-4ce3-9992-b3a222ae89de)
-
-### 2. Connect data to PBI and modelling
+### 1. Connect data to PBI and modelling
 
 - Connect queries above and available tables of dataset to PBI
 - Modelling
 
-![image](https://github.com/thuhuongphan11/Python_RFM_Analysis/assets/141643891/42095a95-ba3a-4890-8a4b-e7b57b53a7af)
+![image](https://github.com/user-attachments/assets/06605c8a-d9e3-43e3-b44e-f6c7e442bba0)
 
 ### 3. Build dashboard
 
 - Using DAX to create measures and calculated columns
 - Build 2 report pages
 
-**Overview of inventory by time/location/product**
+**Customer Purchase Behavior**
 
-![image](https://github.com/thuhuongphan11/Python_RFM_Analysis/assets/141643891/1768a686-bfd8-4514-893f-2680484f4d1d)
+![image](https://github.com/user-attachments/assets/57ed7ff5-29d7-48e9-a4b0-121387842c18)
 
-**Look up inventory status of each product**
+**Product**
 
-![image](https://github.com/thuhuongphan11/Python_RFM_Analysis/assets/141643891/b4d104b6-12f6-48bd-ab77-1f9f8f363e6f)
+![image](https://github.com/user-attachments/assets/22c01183-3c7d-4941-9f35-65e45f77a193)
+
+## IV. Insights and Recommendations
+- From 2011-2014, the New Customer customer group had the largest number of customers, accounting for 24% of the total customers: These are customers who have recently purchased, have low cart value and do not buy frequently.
+- Champion customer group is a group of customers who have recently transacted (1 day), purchased frequently (total 973 times), and spent the most (total $75M) from 2011 - 2014
+- On the contrary, the Lost Customer group is the group with the longest time without a transaction (290 days), purchasing frequency (total 80 times) and shopping cart value is also very low (total $60K).
+
+→ For the New Customer group, businesses should offer more promotional offers to this group of customers to stimulate them to buy more often. When they get used to regularly buying from the business -> Customers have more trust in the brand -> in the future they may consider spending more money on higher value products.
+
+→ For the Champion group, the company should especially build close relationships with customers in this group because this is the group that helps "feed" the company's growth.
+
+→ For the lost customer group, businesses can consider eliminating resources, paying attention to this group of customers and only saving their information so that in case they can return in the future -> the business still has the information. to suggest suitable products for this group
+
+- Among the 275K products sold, the Bikes product group brings in the most revenue (accounting for 86% of total revenue) (Easy to understand because the nature of bicycle products has a higher value/product compared to the other 3 industries). remaining onion).
+- On the contrary, the Accessories product group brings the least revenue to the business (accounting for 1.16% of total revenue).
+- However, the Accessories category (34%) and the Bikes category (33%) have similar rates in terms of customer purchases.
+
+→ This shows that businesses should still promote sales in both of these industries instead of just focusing on the Bikes industry.
+
+- Among all customer groups, Champion Group is the group that brings in the most revenue (57%) not only for the category with the highest revenue, which is Bikes, but also for the other 3 industry groups. This corresponds to the total number of purchases as the Champion group also buys many Assessories and Bikes
+
+→ Businesses should focus on sales in both high-value product groups such as Bikes and low-value product groups such as Assesories for the Champion customer group
 
 
-## IV. Insights
-#### 1. Revenue - Inventory overview
-- Revenue tends to increase steadily from 2011 to the end of 2013. Every year, revenue usually peaks in the third quarter and gradually declines in the fourth quarter.
-- Stock to sales ratio (average inventory value/sales) tends to increase gradually => Inventory efficiency is decreasing
-#### 2. Revenue - Inventory by Category
-- Current revenue is only recorded from 2 categories: Bikes and Components 
-- The largest revenue comes from the Bikes category at $145M (88%), 7 times more than the Components category 
-- The Bikes category has the largest inventory value of 24M (70%), nearly 4 times higher than the Components industry (9M). 
-- Components have a higher proportion of inventory value than revenue => Overstocking
-#### 3. Revenue - Inventory by Subcategory
-- Top 3 Subcategory belong to Bikes category, the rest belong to Components category 
-- Subcategory Road Bikes, Mountain Bikes, Touring Bikes has a ratio of inventory value to sales ranging from 15 to 21%, higher than Mountain Frames 37% 
-- The highest is Subcategory Wheels (210%) => Overstocking
-#### 4. Revenue - Inventory by Product
-- Top 2 products in the Components category, the rest in the Bikes category 
-- These products have a high inventory-to-sales ratio: HL Mountain Frame - Black, 38 (127%), HL Mountain Frame - Silver, 38 (61%), Road-150 Red, 44 (51%) => Overstocking
-- Currently, the company has 69 types of products with inventory below the safe level -> Understocking. In which, most products belong to the Other category (55 products).
-#### 5. Inventory by Location
-- Locations that are occupying the highest amount of inventory are Subassembly (95K units) and Miscellaneous Storage (83K units), but have low total inventory values (3.3M and 1.5M, respectively) => Store many items that are low-value 
-- Location Final Assembly and Finished Goods Storage, although not having a high inventory volume (20K and 17K, respectively), have the highest total inventory value (13.6M and 12.2M respectively) => Store items that are high-value.
-## V. Recommendations
-- Adjusting the amount of inventory to increase or decrease in proportion to the rate of revenue fluctuations, with an increase in the third quarter of each year and a gradual decrease beginning in the fourth quarter.
-- Research more about the reason the stock-to-sales ratio tends to rise in order to find solutions to lower inventory costs.
-- Make a new marketing plan for Accesories, clothing, and Other categories because they are currently not bringing in revenue.
-- Focus on promoting sales of HL Mountain Frame - Black, 38, HL Mountain Frame - Silver, 38 and Road-150 Red, 44 products, as well as products in Subcategory Wheels to resolve inventory backlog
-- Notify and check with the production and purchasing departments about the products that are currently out of stock and adjust the Safety Stock level to suit the profitability of each product line.
-- Many items are out of stock, so it is recommended to collect more opportunity cost data when an item is out of stock, which can be used to control and forecast future sales.
